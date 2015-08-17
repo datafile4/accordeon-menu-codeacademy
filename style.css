@@ -1,0 +1,40 @@
+*{
+  margin: 0;
+}
+
+#container{
+  width: 600px;
+  height:300px;
+  position: absolute;
+  display: block;
+}
+
+.box-width{
+  width: 550px;
+  display: block;
+}
+
+.button-header{
+  height: 30px;
+  position: relative;
+}
+
+.div-content{
+  position: relative;
+  -webkit-transition: height .5s;
+  -moz-transition:height .5s;
+  overflow: hidden;
+}
+
+.borders{
+  border: 1px solid black;
+  border-radius: 5%;
+  border-bottom: transparent;
+}
+
+.hideClass{
+  height: 0px;
+}
+.expandClass{
+  height: 100px;
+}

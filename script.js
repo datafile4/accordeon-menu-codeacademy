@@ -23,20 +23,24 @@ function Block(blockID,checked,container){
   this.checked = checked;
   this.header = document.createElement("H3");
   this.div = document.createElement("DIV");
+  this.paragraph = document.createElement("P");
+  this.div.appendChild(this.paragraph);
+  this.arrow = document.createElement("I");
+  this.arrow.className="fa fa-arrow-right rotateNormal";
+  this.header.appendChild(this.arrow);
   this.container = container;
   container.appendChild(this.header);
   container.appendChild(this.div);
 }
 
 Block.prototype.expand = function(){
-    var temp = document.getElementById("div"+this.blockID);
-    replaceClass(temp,"hideClass","expandClass");
+    replaceClass(this.div,"hideClass","expandClass");
+    replaceClass(this.arrow,"rotateNormal","rotateAnormal");
 }
 
 Block.prototype.hide = function(){
-  console.log(this.blockID);
-  var temp =document.getElementById("div"+this.blockID);
-  replaceClass(temp,"expandClass","hideClass");
+  replaceClass(this.div,"expandClass","hideClass");
+  replaceClass(this.arrow,"rotateAnormal","rotateNormal");
 }
 
 Block.prototype.setHeaderID = function(value){
@@ -56,15 +60,19 @@ Block.prototype.setDivClasses = function(classes){
 }
 
 Block.prototype.setDivContent = function(content){
-  this.div.innerHTML = content;
+  this.paragraph.innerHTML = content;
 }
 
 Block.prototype.setHeaderContent = function(content){
   this.header.innerHTML = content;
 }
 
+Block.prototype.addClick = function(i){
+  this.header.addEventListener('click', function(){move(i);});
+}
+
 function move(number){
-  for(var i=0; i<3; i++){
+  for(var i=0; i<count; i++){
     if(i==number){
       blocksArray[i].expand();
       blocksArray[i].checked = true;
@@ -75,24 +83,13 @@ function move(number){
   }
 }
 
-  blocksArray[0] = new Block(0,true,container);
-  blocksArray[0].setHeaderClasses("button-header borders");
-  blocksArray[0].setDivClasses("div-content borders hideClass");
-  blocksArray[0].setDivID("div"+0);
-  blocksArray[0].expand();
-  blocksArray[0].header.addEventListener('click', function(){move(0);});
-  blocksArray[0].setDivContent(loremContent);
-
-  blocksArray[1] = new Block(1,false,container);
-  blocksArray[1].setHeaderClasses("button-header borders");
-  blocksArray[1].setDivClasses("div-content borders hideClass");
-  blocksArray[1].setDivID("div"+1);
-  blocksArray[1].header.addEventListener('click', function(){move(1);});
-  blocksArray[1].setDivContent(loremContent);
-
-  blocksArray[2] = new Block(2,false,container);
-  blocksArray[2].setHeaderClasses("button-header borders");
-  blocksArray[2].setDivClasses("div-content borders hideClass");
-  blocksArray[2].setDivID("div"+2);
-  blocksArray[2].header.addEventListener('click', function(){move(2);});
-  blocksArray[2].setDivContent(loremContent);
+  for(var i=0; i<count; i++){
+    blocksArray[i] = new Block(i,true,container);
+    blocksArray[i].setHeaderClasses("button-header borders");
+    blocksArray[i].setDivClasses("div-content borders hideClass");
+    blocksArray[i].setDivID("div"+i);
+    blocksArray[i].setHeaderID("header"+i);
+    blocksArray[i].setDivContent(loremContent);
+    blocksArray[i].addClick(i);
+  }
+blocksArray[0].expand();

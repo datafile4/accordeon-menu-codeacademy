@@ -1,5 +1,8 @@
 *{
-  margin: 0;
+  margin: 0px;
+  webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 #container{
@@ -17,20 +20,38 @@
 .button-header{
   height: 30px;
   position: relative;
+  padding: 5px;
+
 }
 
-.rotate {
+
+.rotateNormal{
   -webkit-transition: all 0.5s ease-in-out;
     -moz-transition: all 0.5s ease-in-out;
     -o-transition: all 0.5s ease-in-out;
     transition: all 0.5s ease-in-out;
-    transform: rotate(90deg);
+  transform: rotate(0deg);
 }
+
+.rotateAnormal{
+  -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+  transform: rotate(90deg);
+}
+
+p{
+  margin: 8px 8px 0 8px;;
+}
+
+
 .div-content{
   position: relative;
   -webkit-transition: height .5s;
   -moz-transition:height .5s;
   overflow: hidden;
+  font-size: 12px;
 }
 
 .borders{
